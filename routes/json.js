@@ -7,12 +7,16 @@ const s3 = new AWS.S3()
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json() 
 
-/*router.get('/', async function(req, res, next) {
+router.get('/', async function(req, res, next) {
   let s3File = await s3.getObject({
-    Bucket: process.env.BUCKET,
-    Key: filename,
+    Bucket: "cyclic-cute-jade-veil-eu-north-1",
+    Key: "input.json",
     }).promise()
-});*/
+
+    let result = JSON.parse(s3File.body);
+    console.log(result);
+    res.send(result);
+});
 
 router.post('/', jsonParser, async function(req, res, next) {
   let input = req.body; 
