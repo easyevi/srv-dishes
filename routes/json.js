@@ -14,6 +14,7 @@ router.get('/', async function(req, res, next) {
 router.post('/', jsonParser, async function(req, res, next) {
   let input = req.body; 
   console.log(input);
+  res.send(input); 
 });
 
 module.exports = router;
