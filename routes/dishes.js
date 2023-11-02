@@ -17,10 +17,17 @@ router.get('/:key', async function(req, res, next) {
 
 router.post('/', async function(req, res, next) {
   const {name, country} = req.body;
-  await dishes.set(name, {
-    country: country,
-  })
-  res.end();
+
+  let existingDish = await dishes.get(name);
+  if (existingDish) {
+    res.status(409).send("Dish already in database");
+  }
+  else {
+    await dishes.set(name, {
+      country: country,
+    })
+    res.end();
+  };
 });
 
 module.exports = router;
