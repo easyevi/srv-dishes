@@ -13,7 +13,7 @@ router.get('/', async function(req, res, next) {
     Key: "input.json",
     }).promise()
 
-    let result = JSON.parse(s3File.body);
+    let result = (s3File);
     console.log(result);
     res.send(result);
 });
