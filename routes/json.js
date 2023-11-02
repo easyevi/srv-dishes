@@ -22,7 +22,7 @@ router.post('/', jsonParser, async function(req, res, next) {
     Key: "input.js",
   }).promise()
 
-  res.send('ok', input).end()
+  res.send(input)
 })
 
 module.exports = router;
