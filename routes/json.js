@@ -12,9 +12,17 @@ router.get('/', async function(req, res, next) {
 });
 
 router.post('/', jsonParser, async function(req, res, next) {
-  let input = req.body; 
+  /*let input = req.body; 
   console.log(input);
-  res.send(input); 
-});
+  res.send(input);*/
+  
+  await s3.putObject({
+    Body: JSON.stringify(req.body),
+    Bucket: "cyclic-cute-jade-veil-eu-north-1",
+    Key: "input.js",
+  }).promise()
+
+  res.send('ok').end()
+})
 
 module.exports = router;
