@@ -1,13 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var jsend = require('jsend');
-router.use(jsend.middleware);
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3()
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json() 
 
-router.get('/', async function(req, res, next) {
+router.get('/', jsonParser, async function(req, res, next) {
   let s3File = await s3.getObject({
     Bucket: "cyclic-cute-jade-veil-eu-north-1",
     Key: "input.json",
